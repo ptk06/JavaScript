@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Edit and Remove element</title>
+  </head>
+  <body style="background-color: rgb(34, 34, 34); color: rgb(255, 255, 255)">
+    <ul class="language">
+      <li>JavaScript</li>
+    </ul>
+  </body>
+  <script>
+    //ADD
+
+    function addLanguage(langName) {
+      const li = document.createElement("li");
+      li.innerHTML = `${langName}`; //Here in innerHTML all the elements are traversed again and again, so if we call this function many times then this will not be an optimal approach.
+      document.querySelector(".language").appendChild(li);
+    }
+    addLanguage("Python");
+    addLanguage("TypeScript");
+
+    //In this below function we can not traversing again and again we are just creating the li and there inserting the TextNode.
+    function addOptiLanguage(langName) {
+      const li = document.createElement("li");
+      li.appendChild(document.createTextNode(langName)); //Here we used createTextNode which optimizes it and its not traversed repeatedly
+      document.querySelector(".language").appendChild(li);
+    }
+
+    addOptiLanguage("Java");
+
+    //EDIT
+
+    const secondLang = document.querySelector("li:nth-child(2)");
+    // console.log(secondLang);
+    const li = document.createElement("li");
+    //secondLang.innerHTML = "Mojo" // This will also work
+    li.appendChild(document.createTextNode("Mojo"));
+    // secondLang.appendChild(li); //This will add a new list item at the 2nd position and push the 2nd item to 3d position.
+    secondLang.replaceWith(li); //This will replace or edit the list item at the 2nd position
+
+    //EDIT 1st element
+    // const firstLang = document.querySelector("li:first-child");
+    // firstLang.innerHTML = "<li>React</li>";
+    // firstLang.remove();
+    // console.log(secondLang);
+
+    //REMOVE
+
+    const lastLang = document.querySelector("li:last-child");
+    console.log(lastLang);
+    lastLang.remove();
+  </script>
+</html>

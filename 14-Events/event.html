@@ -5,5 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+  const imgs = document.querySelectorAll("#images img");
+  const googleLink = document.getElementById("google");
+
+  document.getElementById("japan").addEventListener("click", () => {
+    console.log("Japan image clicked");
+  })
+
+  // attachEvent()
+    // jQuery - on
+
+    // type, timestamp, defaultPrevented
+    // target, toElement, srcElement, currentTarget,
+    // Interview Related- 
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+
+
+ // -------------------------------------------------------------------------------------------------------------------------------------------//
+
+  // Event Propagation
+
+//   Bubbling
+  // Definition: Event bubbling means the event starts at the target element and bubbles up to its ancestors (child → parent) or bottom to top.
+  // Default: Yes, bubbling is the default event propagation mode in the DOM.
+  // Example:
+  // The below code correctly attaches a click event listener with the third parameter as false (or omitted), which means bubbling:
+  imgs.forEach((e) => {
+    e.addEventListener("click", (el) => {
+      console.log(`Bubbling: Clicked on ${el.target.id}`);
+    }, false); // Setting the third parameter to false enables bubbling
+  });
+
+//   Capturing
+  // Definition: Event capturing (or "capture phase") means the event starts from the outermost ancestor and travels down to the target (parent → child) or top to bottom.
+  // Default: No, capturing is not the default; you must explicitly set the third parameter to true.
+  // Example:
+  // The below code correctly attaches a mouseover event listener with the third parameter as true:
+  imgs.forEach((e) => {
+    e.addEventListener("mouseover", (el) => {
+      console.log(`Capturing: Mouse over on ${el.target.id}`);
+    }, true); // Setting the third parameter to true enables capturing
+  });
+
+</script>
 </html>
